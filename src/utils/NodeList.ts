@@ -7,6 +7,11 @@ export class NodeList<T extends Token = Token> extends List<T> {
 		super( nodes )
 	}
 
+	get templates(): TemplateList {
+		const templates = this.filter<Template>( token => token instanceof Template, true )
+		return new TemplateList( templates )
+	}
+
 	filter<U = T>( fn: ( token: T ) => boolean, recursive = false ): U[] {
 		const result: U[] = []
 
@@ -29,10 +34,5 @@ export class NodeList<T extends Token = Token> extends List<T> {
 			// @ts-ignore
 			if ( fn( node ) ) return node
 		}
-	}
-
-	getTemplates(): TemplateList {
-		const templates = this.filter<Template>( token => token instanceof Template, true )
-		return new TemplateList( templates )
 	}
 }
