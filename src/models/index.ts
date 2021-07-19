@@ -1,3 +1,4 @@
+export * from './_TemplateParameter'
 export * from './_Token'
 export * from './Heading'
 export * from './NamedParameter'

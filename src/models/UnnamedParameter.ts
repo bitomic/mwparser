@@ -10,6 +10,8 @@ export class UnnamedParameter extends TemplateParameter {
 		this.#value = new NodeList( value )
 	}
 
+	get name(): undefined { return undefined }
+
 	get value(): NodeList { return this.#value }
 	set value( nodes: NodeList ) { this.#value = nodes }
 

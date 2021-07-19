@@ -1,6 +1,6 @@
-import { NodeList } from '../utils'
+import { List } from '../utils'
 
 export abstract class Token {
-	abstract get value(): NodeList | string
+	abstract get value(): List<Token> | string
 	abstract toString(): string
 }
