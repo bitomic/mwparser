@@ -1,14 +1,11 @@
+import { List } from './List'
 import { Template, Token } from '../models'
+import { TemplateList } from './TemplateList'
 
-export class NodeList<T extends Token = Token> {
-	nodes: T[]
-
+export class NodeList<T extends Token = Token> extends List<T> {
 	constructor( nodes: T | T[] ) {
-		if ( Array.isArray( nodes ) ) this.nodes = nodes
-		else this.nodes = [ nodes ]
+		super( nodes )
 	}
-
-	get length(): number { return this.nodes.length }
 
 	filter<U = T>( fn: ( token: T ) => boolean, recursive = false ): U[] {
 		const result: U[] = []
@@ -34,32 +31,8 @@ export class NodeList<T extends Token = Token> {
 		}
 	}
 
-	getTemplates(): Template[] {
-		return this.filter<Template>( token => token instanceof Template, true )
-	}
-
-	toString(): string {
-		return `${this.nodes.join('')}`
-	}
-
-	*[Symbol.iterator](): Generator<T, void, unknown> {
-		for ( const node of this.nodes ) yield node
-	}
-
-	*iterateRecursively(): Generator<T, void, unknown> {
-		const nodes = [ ...this.nodes ]
-
-		while ( nodes.length !== 0 ) {
-			const node = nodes.shift()
-			if ( !node ) break
-
-			yield node
-			
-			const subnodes = node.value
-			if ( !( subnodes instanceof NodeList ) ) continue
-			for ( const subnode of subnodes ) {
-				nodes.push( subnode as T )
-			}
-		}
+	getTemplates(): TemplateList {
+		const templates = this.filter<Template>( token => token instanceof Template, true )
+		return new TemplateList( templates )
 	}
 }
