@@ -1,8 +1,8 @@
 import { NodeList } from '../utils'
-import { TemplateArgument } from './_TemplateArgument'
+import { TemplateParameter } from './_TemplateParameter'
 import { Token } from './_Token'
 
-export class NamedArgument extends TemplateArgument {
+export class NamedParameter extends TemplateParameter {
 	#name: string
 	#value: NodeList
 	

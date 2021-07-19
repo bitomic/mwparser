@@ -1,10 +1,10 @@
 {
 	const {
 		Heading,
-		NamedArgument,
+		NamedParameter,
 		Template,
 		Text,
-		UnnamedArgument
+		UnnamedParameter
 	} = options
 }
 
@@ -13,9 +13,9 @@ Token = Template / Name / Heading
 Name = name:Symbol+ { return new Text( { value: name.join('') } ) }
 
 Template = '{{' name:Name '}}' { return new Template( { name } ) } / '{{' name:Name args:TemplateInterior+ '}}' { return new Template( { name, args } ) }
-TemplateInterior = NamedArgument / UnnamedArgument
-NamedArgument = '|' name:Name '=' value:Token+ { return new NamedArgument( { name, value } ) }
-UnnamedArgument = '|' value:Token+ { return new UnnamedArgument( { value } ) }
+TemplateInterior = NamedParameter / UnnamedParameter
+NamedParameter = '|' name:Name '=' value:Token+ { return new NamedParameter( { name, value } ) }
+UnnamedParameter = '|' value:Token+ { return new UnnamedParameter( { value } ) }
 
 Heading = level1:('='+) value:Token+ level2:('='+) { return new Heading( { value, level1, level2 } ) }
 
