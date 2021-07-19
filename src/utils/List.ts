@@ -1,4 +1,4 @@
-import { Token } from "../models"
+import { Token } from '../models'
 
 export abstract class List<T extends Token> {
 	nodes: T[]

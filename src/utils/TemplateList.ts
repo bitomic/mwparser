@@ -1,5 +1,5 @@
-import { Template } from "../models"
-import { List } from "./List"
+import { Template } from '../models'
+import { List } from './List'
 
 export class TemplateList extends List<Template> {
 	constructor( nodes: Template | Template[] ) {

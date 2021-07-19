@@ -19,11 +19,12 @@ export class NamedParameter extends TemplateParameter {
 	get value(): NodeList { return this.#value }
 	set value( nodes: NodeList ) { this.#value = nodes }
 
-	setValue( content: string ) {
+	setValue( content: string ): void {
 		if ( this.value.nodes.length === 1 && this.#value.nodes[0] instanceof Text && typeof this.value.nodes[0].value === 'string' ) {
 			const oldValue = this.value.nodes[0].value
 
 			const token = this.#value.nodes[0]
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
 			token.value = oldValue.replace( oldValue.trim(), content )
 		} else {

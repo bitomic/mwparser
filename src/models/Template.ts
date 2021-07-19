@@ -17,9 +17,9 @@ export class Template extends Token {
 	get name(): string { return this.#name.value }
 	set name( name: string ) { this.#name.value = this.name.replace( this.name.trim(), name ) }
 
-	get parameters() { return this.#value }
+	get parameters(): ParameterList { return this.#value }
 
-	get value() { return this.#value }
+	get value(): ParameterList { return this.#value }
 	set value( nodes: ParameterList ) { this.#value = nodes }
 
 	toString(): string {

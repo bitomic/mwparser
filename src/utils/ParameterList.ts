@@ -7,8 +7,8 @@ export class ParameterList extends List<TemplateParameter> {
 	}
 
 	// TODO: Handle templates that mixes named and unnamed positional parameters, e.g.:
-		// {{Template|Hello|2=Good-bye}}
-		// {{Template|Hello|3=Good-bye}}
+	// {{Template|Hello|2=Good-bye}}
+	// {{Template|Hello|3=Good-bye}}
 	get( key: string ): NamedParameter | undefined
 	get( key: number ): UnnamedParameter | undefined
 	get( key: string | number ): TemplateParameter | undefined {
