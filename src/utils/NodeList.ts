@@ -47,7 +47,7 @@ export class NodeList<T extends Token = Token> {
 	}
 
 	*iterateRecursively(): Generator<T, void, unknown> {
-		const nodes = this.nodes
+		const nodes = [ ...this.nodes ]
 
 		while ( nodes.length !== 0 ) {
 			const node = nodes.shift()
