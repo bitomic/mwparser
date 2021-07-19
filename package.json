@@ -1,16 +1,21 @@
 {
   "name": "mwparser",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Parse and manipulate MediaWiki's wikicode.",
+  "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
     "lint": "eslint src/ --ext .js,.ts",
     "lint:fix": "eslint src/ --fix --ext .js,.ts"
   },
   "keywords": [],
-  "author": "bitomic <alehandro.rzrv@gmail.com>",
-  "license": "ISC",
+  "author": "bitomic",
+  "license": "MIT",
+  "repository": {
+	  "type": "git",
+	  "url": "https://github.com/bitomic/mwparser.git"
+  },
+  "homepage": "https://github.com/bitomic/mwparser#readme",
   "devDependencies": {
     "@types/node": "^16.3.1",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
