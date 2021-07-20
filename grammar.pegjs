@@ -4,12 +4,13 @@
 		NamedParameter,
 		Template,
 		Text,
-		UnnamedParameter
+		UnnamedParameter,
+		Wikilink
 	} = options
 }
 
 Start = Token+
-Token = Template / Name / Heading
+Token = Template / Name / Heading / Wikilink
 Name = name:Symbol+ { return new Text( { value: name.join('') } ) }
 
 Template = '{{' name:Name '}}' { return new Template( { name } ) } / '{{' name:Name args:TemplateInterior+ '}}' { return new Template( { name, args } ) }
@@ -23,4 +24,6 @@ Heading = level1:('='+) value:Token+ level2:('='+) { return new Heading( {
 	level2: level2.length
 } ) }
 
-Symbol = [^|={}]
+Wikilink = '[[' target:Name ']]' { return new Wikilink( { target } ) } / '[[' target:Name '|' display:Name ']]' { return new Wikilink( { target, display } ) }
+
+Symbol = [^|={}\[\]]
