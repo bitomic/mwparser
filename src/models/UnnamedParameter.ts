@@ -13,7 +13,7 @@ export class UnnamedParameter extends TemplateParameter {
 	get name(): undefined { return undefined }
 
 	get value(): NodeList { return this.#value }
-	set value( nodes: NodeList ) { this.#value = nodes }
+	set value( nodes: NodeList ) { this.#value.innerValue = nodes }
 
 	toString(): string {
 		return `|${this.value}`

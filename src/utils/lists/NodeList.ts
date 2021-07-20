@@ -36,7 +36,7 @@ export class NodeList<T extends Token = Token> extends List<T> {
 		}
 	}
 
-	set softUpdate( _nodeList: List<T> | string ) {
+	set innerValue( _nodeList: List<T> | string ) {
 		const nodeList = typeof _nodeList === 'string'
 			?  new NodeList<T>( new Text( { value: _nodeList } ) as unknown as T )
 			: _nodeList
@@ -72,5 +72,12 @@ export class NodeList<T extends Token = Token> extends List<T> {
 		if ( rightTrim.length > 0 ) {
 			this.nodes.push( new Text( { value: rightTrim } ) as unknown as T )
 		}
+	}
+
+	set fullValue( _nodeList: List<T> | string ) {
+		const nodeList = typeof _nodeList === 'string'
+			? new NodeList<T>( new Text( { value: _nodeList } ) as unknown as T )
+			: _nodeList
+		this.nodes = nodeList.nodes
 	}
 }

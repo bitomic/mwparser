@@ -5,14 +5,12 @@ export class Heading extends Token {
 	#value: NodeList
 	#level: number
 
-	constructor( { value, level1, level2 }: { value: Token[], level1: string[], level2: string[] } ) {
+	constructor( { value, level1, level2 }: { value: Token[], level1: number, level2: number } ) {
 		super()
-		const len1 = level1.length
-		const len2 = level2.length
-		if ( len1 !== len2 ) throw new Error( 'Unbalanced heading' )
+		if ( level1 !== level2 ) throw new Error( 'Unbalanced heading' )
 
 		this.#value = new NodeList( value )
-		this.#level = len1
+		this.#level = level1
 	}
 
 	get level(): number { return this.#level }

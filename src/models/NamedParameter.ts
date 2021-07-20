@@ -13,11 +13,11 @@ export class NamedParameter extends TemplateParameter {
 		this.#value = new NodeList( value )
 	}
 
-	get name(): string { return this.#name.value }
-	set name( name: string ) { this.#name.value = name }
+	get name(): string { return this.#name.value.trim() }
+	set name( name: string ) { this.#name.innerValue = name }
 
 	get value(): NodeList { return this.#value }
-	set value( nodes: NodeList ) { this.#value = nodes }
+	set value( nodes: NodeList ) { this.#value.innerValue = nodes }
 
 	setValue( content: string ): void {
 		if ( this.value.nodes.length === 1 && this.#value.nodes[0] instanceof Text && typeof this.value.nodes[0].value === 'string' ) {
@@ -33,6 +33,6 @@ export class NamedParameter extends TemplateParameter {
 	}
 
 	toString(): string {
-		return `|${this.name}=${this.value}`
+		return `|${this.#name}=${this.#value}`
 	}
 }

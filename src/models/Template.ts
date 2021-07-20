@@ -14,8 +14,8 @@ export class Template extends Token {
 		else this.#value = new ParameterList( [] )
 	}
 
-	get name(): string { return this.#name.value }
-	set name( name: string ) { this.#name.value = this.name.replace( this.name.trim(), name ) }
+	get name(): string { return this.#name.innerValue }
+	set name( name: string ) { this.#name.innerValue = name }
 
 	get parameters(): ParameterList { return this.#value }
 
@@ -24,9 +24,9 @@ export class Template extends Token {
 
 	toString(): string {
 		if ( this.value.length === 0 ) {
-			return `{{${this.name}}}`
+			return `{{${this.#name}}}`
 		} else {
-			return `{{${this.name}${this.value}}}`
+			return `{{${this.#name}${this.#value}}}`
 		}
 	}
 }
