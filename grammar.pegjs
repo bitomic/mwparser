@@ -17,6 +17,10 @@ TemplateInterior = NamedParameter / UnnamedParameter
 NamedParameter = '|' name:Name '=' value:Token+ { return new NamedParameter( { name, value } ) }
 UnnamedParameter = '|' value:Token+ { return new UnnamedParameter( { value } ) }
 
-Heading = level1:('='+) value:Token+ level2:('='+) { return new Heading( { value, level1, level2 } ) }
+Heading = level1:('='+) value:Token+ level2:('='+) { return new Heading( {
+	value,
+	level1: level1.length,
+	level2: level2.length
+} ) }
 
 Symbol = [^|={}]
