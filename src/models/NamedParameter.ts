@@ -17,20 +17,9 @@ export class NamedParameter extends TemplateParameter {
 	set name( name: string ) { this.#name.innerValue = name }
 
 	get value(): NodeList { return this.#value }
-	set value( nodes: NodeList ) { this.#value.innerValue = nodes }
+	set value( nodes: NodeList ) { this.#value = nodes }
 
-	setValue( content: string ): void {
-		if ( this.value.nodes.length === 1 && this.#value.nodes[0] instanceof Text && typeof this.value.nodes[0].value === 'string' ) {
-			const oldValue = this.value.nodes[0].value
-
-			const token = this.#value.nodes[0]
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			token.value = oldValue.replace( oldValue.trim(), content )
-		} else {
-			this.value = new NodeList( new Text( { value: content } ) )
-		}
-	}
+	set innerValue( value: NodeList | string ) { this.#value.innerValue = value }
 
 	toString(): string {
 		return `|${this.#name}=${this.#value}`
