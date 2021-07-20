@@ -10,9 +10,15 @@ export class TemplateList extends List<Template> {
 		const result: Template[] = []
 
 		for ( const node of this.nodes ) {
-			if ( node.name.trim() === name ) result.push( node )
+			if ( node.name === name ) result.push( node )
 		}
 
 		return result
+	}
+
+	rename( from: string, to: string ): void {
+		for ( const node of this.nodes ) {
+			if ( node.name === from ) node.name = to
+		}
 	}
 }
