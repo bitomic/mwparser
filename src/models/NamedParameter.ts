@@ -17,7 +17,7 @@ export class NamedParameter extends TemplateParameter {
 	set name( name: string ) { this.#name.innerValue = name }
 
 	get value(): NodeList { return this.#value }
-	set value( nodes: NodeList ) { this.#value = nodes }
+	set value( nodes: NodeList ) { this.#value.innerValue = nodes }
 
 	set innerValue( value: NodeList | string ) { this.#value.innerValue = value }
 
