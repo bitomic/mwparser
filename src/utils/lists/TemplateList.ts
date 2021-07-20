@@ -1,4 +1,4 @@
-import { Template } from '../models'
+import { Template } from '../../models'
 import { List } from './List'
 
 export class TemplateList extends List<Template> {

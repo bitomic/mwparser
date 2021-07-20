@@ -1,5 +1,5 @@
 import { List } from './List'
-import { NamedParameter, TemplateParameter, UnnamedParameter } from '../models'
+import { NamedParameter, TemplateParameter, UnnamedParameter } from '../../models'
 
 export class ParameterList extends List<TemplateParameter> {
 	constructor( nodes: TemplateParameter | TemplateParameter[] ) {

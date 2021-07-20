@@ -1,5 +1,5 @@
 import { List } from './List'
-import { Template, Token } from '../models'
+import { Template, Token } from '../../models'
 import { TemplateList } from './TemplateList'
 
 export class NodeList<T extends Token = Token> extends List<T> {
