@@ -1,4 +1,4 @@
-import { Template } from '../../models'
+import { NamedParameter, Template } from '../../models'
 import { List } from './List'
 
 export class TemplateList extends List<Template> {
@@ -11,6 +11,17 @@ export class TemplateList extends List<Template> {
 
 		for ( const node of this.nodes ) {
 			if ( node.name === name ) result.push( node )
+		}
+
+		return result
+	}
+
+	findParameter( name: string ): NamedParameter[] {
+		const result: NamedParameter[] = []
+
+		for ( const node of this.nodes ) {
+			const parameter = node.parameters.get( name )
+			if ( parameter ) result.push( parameter )
 		}
 
 		return result
