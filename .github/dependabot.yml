@@ -1,5 +1,6 @@
 version: 2
-update_configs:
-  - package_manager: 'npm'
+updates:
+  - package_ecosystem: 'npm'
     directory: '/'
-    update_schedule: 'daily'
+    schedule:
+      interval: 'daily'
