@@ -1,6 +1,6 @@
 {
   "name": "mwparser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parse and manipulate MediaWiki's wikicode.",
   "main": "dist/main.js",
   "scripts": {
