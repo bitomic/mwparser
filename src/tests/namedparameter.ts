@@ -1,12 +1,12 @@
 import 'mocha'
 import assert from 'assert'
 import { parse } from '../main'
-import { Template } from '../models'
+import { NamedParameter, Template } from '../models'
 
 describe( 'Named Parameter', () => {
-	const parsed = parse( `{{T| a = 1 }}` )
+	const parsed = parse( '{{T| a = 1 }}' )
 	const template = parsed.nodes[0] as Template
-	const parameter = template.parameters.get( 'a' )!
+	const parameter = template.parameters.get( 'a' ) as NamedParameter
 
 	it( 'Name is accessible', () => {
 		assert.strictEqual( parameter.name, 'a' )
@@ -26,7 +26,7 @@ describe( 'Named Parameter', () => {
 	} )
 
 	it( 'Can set value', () => {
-		parameter.value = parse( `1,000.00 {{Coin}}` )
-		assert.strictEqual( `${parameter}`, `| b = 1,000.00 {{Coin}} ` )
+		parameter.value = parse( '1,000.00 {{Coin}}' )
+		assert.strictEqual( `${parameter}`, '| b = 1,000.00 {{Coin}} ' )
 	} )
 } )

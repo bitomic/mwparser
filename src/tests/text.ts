@@ -4,7 +4,7 @@ import { parse } from '../main'
 import { Text } from '../models'
 
 describe( 'Text', () => {
-	const parsed = parse( ` Lorem ipsum dolor amet ` )
+	const parsed = parse( ' Lorem ipsum dolor amet ' )
 	const text = parsed.nodes[0] as Text
 
 	it( 'Value is accessible', () => {

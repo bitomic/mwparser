@@ -2,7 +2,7 @@ import 'mocha'
 import assert from 'assert'
 import { parse } from '../main'
 import { NodeList } from '../utils'
-import { Heading, Text } from '../models'
+import { Heading } from '../models'
 
 describe( 'Heading', () => {
 	describe( 'Update value', () => {

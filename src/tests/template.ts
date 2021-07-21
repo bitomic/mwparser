@@ -3,7 +3,7 @@ import assert from 'assert'
 import { parse } from '../main'
 
 describe( 'Template', () => {
-	const parsed = parse( `{{ Template | name = Cheese | value = $250.00 }}` )
+	const parsed = parse( '{{ Template | name = Cheese | value = $250.00 }}' )
 	const template = parsed.templates.find( 'Template' )[0]
 
 	it( 'Name is accessible', () => {
@@ -16,6 +16,6 @@ describe( 'Template', () => {
 	} )
 
 	it( 'Representation is updated', () => {
-		assert.strictEqual( `${template}`, `{{ Plantilla | name = Cheese | value = $250.00 }}` )
+		assert.strictEqual( `${template}`, '{{ Plantilla | name = Cheese | value = $250.00 }}' )
 	} )
 } )
