@@ -1,6 +1,6 @@
 {
   "name": "mwparser",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Parse and manipulate MediaWiki's wikicode.",
   "main": "dist/main.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "lint:fix": "eslint src/ --fix --ext .js,.ts",
     "prepublish": "tsc --declaration",
     "test": "mocha dist/tests",
-	"update:patch": "npm version patch -m \"chore: set version to %s\""
+    "update:patch": "npm version patch -m \"chore: set version to %s\""
   },
   "keywords": [],
   "author": "bitomic",
