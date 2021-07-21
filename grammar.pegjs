@@ -10,8 +10,8 @@
 }
 
 Start = Token+
-Token = ExternalLink / URL / Template / Wikitable / Heading / Wikilink / File / GalleryItem / Name
-Name = name:Symbol+ { return new Text( { value: name.join('') } ) }
+Token = ExternalLink / URL / Template / Wikitable / Math / Heading / Wikilink / File / GalleryItem / Name
+Name = name:(!'<math>' Symbol)+ { return new Text( { value: name.flat().join('') } ) }
 Symbol = [^|={}\[\]]
 URL = 'http' host:[^? ]+ qs:( '?' ( [^= ]+ '=' [^& ]+ )+ )? {
 	if ( qs ) return new Text( { value: `http${host.join('')}${qs.flat(3).join('')}` } )
@@ -37,3 +37,4 @@ ExternalLink = '[' URL Name ']' / '[' URL ']'
 GalleryItem = value:( '\n' [^|{}\[\]]+ '|' [^\n]+ ) { return new Text( { value: value.flat(2).join('') } ) }
 
 Wikitable = '{|' tablecontent:(Token / '|' [^}] )+ '|}' { return new Text( { value: `{|${tablecontent.flat().join('')}|}` } ) }
+Math = '<math>' content:( !'</math>' . )* '</math>' { return new Text( { value: `<math>${content.flat().join('')}</math>` } ) }
