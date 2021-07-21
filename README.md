@@ -1,5 +1,8 @@
 # mwparser
 
+![Node.js CI](https://github.com/bitomic/mwparser/actions/workflows/node.js.yml/badge.svg)
+![Lint](https://github.com/bitomic/mwparser/actions/workflows/lint.yml/badge.svg)
+
 - [mwparser](#mwparser)
 	- [Installation](#installation)
 	- [Usage](#usage)
