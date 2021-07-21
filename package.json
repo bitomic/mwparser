@@ -7,7 +7,7 @@
     "build": "tsc",
     "lint": "eslint src/ --ext .js,.ts",
     "lint:fix": "eslint src/ --fix --ext .js,.ts",
-	"test": "mocha dist/tests"
+    "test": "mocha dist/tests"
   },
   "keywords": [],
   "author": "bitomic",
@@ -23,7 +23,8 @@
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "eslint": "^7.31.0",
-    "mocha": "^9.0.2"
+    "mocha": "^9.0.2",
+    "typescript": "^4.3.5"
   },
   "dependencies": {
     "@types/pegjs": "^0.10.3",
