@@ -10,13 +10,15 @@
 }
 
 Start = Token+
-Token = Template / Name / Heading / Wikilink
+Token = Template / Name / Heading / Wikilink / File
 Name = name:Symbol+ { return new Text( { value: name.join('') } ) }
 
 Template = '{{' name:Name '}}' { return new Template( { name } ) } / '{{' name:Name args:TemplateInterior+ '}}' { return new Template( { name, args } ) }
 TemplateInterior = NamedParameter / UnnamedParameter
 NamedParameter = '|' name:Name '=' value:Token+ { return new NamedParameter( { name, value } ) }
 UnnamedParameter = '|' value:Token+ { return new UnnamedParameter( { value } ) }
+
+File = '[[' name:Name extra:('|' Name)+ ']]' { return new Text( { value: `[[${name}${extra.flat().join('')}]]` } ) }
 
 Heading = level1:('='+) value:Token+ level2:('='+) { return new Heading( {
 	value,
