@@ -10,8 +10,13 @@
 }
 
 Start = Token+
-Token = Template / Name / Heading / Wikilink / File
+Token = URL / GalleryItem / Template / Name / Heading / Wikilink / File
 Name = name:Symbol+ { return new Text( { value: name.join('') } ) }
+Symbol = [^|={}\[\]]
+URL = 'http' host:[^? ]+ qs:( '?' ( [^= ]+ '=' [^& ]+ )+ )? {
+	if ( qs ) return new Text( { value: `http${host.join('')}${qs.flat(3).join('')}` } )
+	return new Text( { value: `http${host.join('')}` } )
+}
 
 Template = '{{' name:Name '}}' { return new Template( { name } ) } / '{{' name:Name args:TemplateInterior+ '}}' { return new Template( { name, args } ) }
 TemplateInterior = NamedParameter / UnnamedParameter
@@ -28,4 +33,4 @@ Heading = level1:('='+) value:Token+ level2:('='+) { return new Heading( {
 
 Wikilink = '[[' target:Name ']]' { return new Wikilink( { target } ) } / '[[' target:Name '|' display:Name ']]' { return new Wikilink( { target, display } ) }
 
-Symbol = [^|={}\[\]]
+GalleryItem = value:( '\n' [^|]+ '|' [^\n]+ ) { return new Text( { value: value.flat(2).join('') } ) }
