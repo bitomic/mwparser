@@ -10,7 +10,7 @@
 }
 
 Start = Token+
-Token = URL / GalleryItem / Template / Name / Heading / Wikilink / File
+Token = ExternalLink / URL / Template / Heading / Wikilink / File / GalleryItem / Name
 Name = name:Symbol+ { return new Text( { value: name.join('') } ) }
 Symbol = [^|={}\[\]]
 URL = 'http' host:[^? ]+ qs:( '?' ( [^= ]+ '=' [^& ]+ )+ )? {
@@ -32,5 +32,6 @@ Heading = level1:('='+) value:Token+ level2:('='+) { return new Heading( {
 } ) }
 
 Wikilink = '[[' target:Name ']]' { return new Wikilink( { target } ) } / '[[' target:Name '|' display:Name ']]' { return new Wikilink( { target, display } ) }
+ExternalLink = '[' URL Name ']' / '[' URL ']'
 
-GalleryItem = value:( '\n' [^|]+ '|' [^\n]+ ) { return new Text( { value: value.flat(2).join('') } ) }
+GalleryItem = value:( '\n' [^|{}\[\]]+ '|' [^\n]+ ) { return new Text( { value: value.flat(2).join('') } ) }
