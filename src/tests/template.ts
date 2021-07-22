@@ -6,6 +6,9 @@ describe( 'Template', () => {
 	const parsed = parse( '{{ Template | name = Cheese | value = $250.00 }}' )
 	const template = parsed.templates.find( 'Template' )[0]
 
+	console.log( template )
+	console.log( `${parsed.templates}` )
+
 	it( 'Name is accessible', () => {
 		assert.strictEqual( `${template.name}`, 'Template' )
 	} )
