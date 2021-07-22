@@ -1,21 +1,21 @@
 import { ParameterList } from '../utils'
 import { TemplateParameter } from './_TemplateParameter'
-import { Text } from './Text'
 import { Token } from './_Token'
+import { untrimmedReplace } from '../utils'
 
 export class Template extends Token {
-	#name: Text
+	#name: string
 	#value: ParameterList
 	
-	constructor( { name, args }: { name: Text, args?: TemplateParameter[] } ) {
+	constructor( { name, args }: { name: string, args?: TemplateParameter[] } ) {
 		super()
 		this.#name = name
 		if ( args ) this.#value = new ParameterList( args )
 		else this.#value = new ParameterList( [] )
 	}
 
-	get name(): string { return this.#name.innerValue }
-	set name( name: string ) { this.#name.innerValue = name }
+	get name(): string { return this.#name.trim() }
+	set name( name: string ) { this.#name = untrimmedReplace( this.#name, name ) }
 
 	get parameters(): ParameterList { return this.#value }
 

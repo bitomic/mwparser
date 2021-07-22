@@ -1,6 +1,6 @@
 import { Token } from './_Token'
 
-export class Wikilink extends Token {
+export class ExternalLink extends Token {
 	#target: string
 	#display?: string
 
@@ -19,7 +19,7 @@ export class Wikilink extends Token {
 	get value(): string { return this.#target }
 
 	toString(): string {
-		if ( this.#display ) return `[[${this.#target}|${this.#display}]]`
-		else return `[[${this.#target}]]`
+		if ( this.#display ) return `[${this.#target} ${this.#display}]`
+		else return `[${this.#target}]`
 	}
 }

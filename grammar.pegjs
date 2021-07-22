@@ -1,40 +1,143 @@
 {
-	const {
-		Heading,
-		NamedParameter,
-		Template,
-		Text,
-		UnnamedParameter,
-		Wikilink
-	} = options
+	const Model = options
 }
 
-Start = Token+
-Token = ExternalLink / URL / Template / Wikitable / Math / Heading / Wikilink / File / GalleryItem / Name
-Name = name:(!'<math>' Symbol)+ { return new Text( { value: name.flat().join('') } ) }
-Symbol = [^|={}\[\]]
-URL = 'http' host:[^? ]+ qs:( '?' ( [^= ]+ '=' [^& ]+ )+ )? {
-	if ( qs ) return new Text( { value: `http${host.join('')}${qs.flat(3).join('')}` } )
-	return new Text( { value: `http${host.join('')}` } )
-}
+Start
+	= ( Token / UnusedToken )+
+Symbol
+	= [^|={}\[\]<>]
+Token
+	= Template
+	/ Wikilink
+	/ ExternalLink
+	/ Gallery
+	/ Math
+	/ Wikitable
+	/ Tag
+	/ Heading
+	/ Text
 
-Template = '{{' name:Name '}}' { return new Template( { name } ) } / '{{' name:Name args:TemplateInterior+ '}}' { return new Template( { name, args } ) }
-TemplateInterior = NamedParameter / UnnamedParameter
-NamedParameter = '|' name:Name '=' value:Token+ { return new NamedParameter( { name, value } ) }
-UnnamedParameter = '|' value:Token+ { return new UnnamedParameter( { value } ) }
+// Utilities
+RawText
+	= symbols:Symbol+ { return symbols.join('') }
+UnusedToken
+	= value:( ( !Token ) . )+ {
+		return new Model.Text( { value: value.join('') } )
+	}
+_S
+	= ' '*
 
-File = '[[' name:Name extra:('|' Name)+ ']]' { return new Text( { value: `[[${name}${extra.flat().join('')}]]` } ) }
+// Tokens
+ExternalLink
+	= '[' target:([^ \]])+ ' ' display:([^\]]) ']' {
+		return new Model.ExternalLink( { target, display } )
+	}
+	/ '[' target:([^ \]]) ']' {
+		return new Model.ExternalLink( { target } )
+	}
 
-Heading = level1:('='+) value:Token+ level2:('='+) { return new Heading( {
-	value,
-	level1: level1.length,
-	level2: level2.length
-} ) }
+Gallery
+	= '<gallery' details:_GalleryUntilTerminator '</gallery>' {
+		details = details.map( i => i[1] ).join('')
+		return new Model.Text( {
+			value: `<gallery${details}</gallery>`
+		} )
+	}
+_GalleryUntilTerminator
+	= ( &_GalleryTerminatorAhead [^<] )*
+_GalleryTerminatorAhead
+	= . (!'<' .)* '<'
 
-Wikilink = '[[' target:Name ']]' { return new Wikilink( { target } ) } / '[[' target:Name '|' display:Name ']]' { return new Wikilink( { target, display } ) }
-ExternalLink = '[' URL Name ']' / '[' URL ']'
+Heading
+	= left:('=' '='+) value:Token+ right:('=' '='+) {
+		return new Model.Heading( {
+			level1: left.length,
+			level2: right.length,
+			value
+		} )
+	}
 
-GalleryItem = value:( '\n' [^|{}\[\]]+ '|' [^\n]+ ) { return new Text( { value: value.flat(2).join('') } ) }
+Math
+	= '<math' details:_MathUntilTerminator '</math>' {
+		details = details.map( i => i[1] ).join('')
+		return new Model.Text( {
+			value: `<math${details}</math>`
+		} )
+	}
+_MathUntilTerminator
+	= ( &_MathTerminatorAhead . )*
+_MathTerminatorAhead
+	= . (!'</math>' .)* '</math>'
 
-Wikitable = '{|' tablecontent:(Token / '|' [^}] )+ '|}' { return new Text( { value: `{|${tablecontent.flat().join('')}|}` } ) }
-Math = '<math>' content:( !'</math>' . )* '</math>' { return new Text( { value: `<math>${content.flat().join('')}</math>` } ) }
+Tag
+	= open:TagOpen content:Token* close:TagClose {
+		open.value = content
+		open.assert( close )
+		return open
+	}
+TagOpen
+	= '<' _S name:( [^ >]+ ) attributes:( TagAttribute* ) _S '>' {
+		name = name.join('')
+		return new Model.Tag( { attributes, name } )
+	}
+TagAttribute
+	= _S name:( [^= ]+ ) _S '=' _S value:('"' [^"]+ '"') {
+		name = name.flat().join('')
+		value = value.flat().join('')
+		return new Model.TagAttribute( { name, value } )
+	}
+TagClose
+	= '</' _S name:( [^ >]+ ) _S '>' { return name.join('') }
+
+Template
+	= '{{' name:[^|}]+ args:TemplateParameter* '}}' {
+		name = name.join('')
+		return new Model.Template( {
+			name,
+			args
+		} )
+	}
+TemplateParameter
+	= TemplateParameterNamed
+	/ TemplateParameterUnnamed
+TemplateParameterNamed
+	= '|' name:[^=]+ '=' value:Token+ {
+		return new Model.NamedParameter( {
+			name: new Model.Text( { value: name.join('') } ),
+			value
+		} )
+	}
+TemplateParameterUnnamed
+	= '|' value:Token+ {
+		return new Model.UnnamedParameter( {
+			value
+		} )
+	}
+
+Text
+	= symbols:Symbol+ {
+		return new Model.Text( { value: symbols.join('') } )
+	}
+
+Wikilink
+	= '[[' target:([^|\]])+ '|' display:([^|\]])+ ']]' {
+		target = target.join('')
+		display = display.join('')
+		return new Model.Wikilink( { target, display } )
+	}
+	/ '[[' target:([^\]])+ ']]' {
+		target = target.join('')
+		return new Model.Wikilink( { target } )
+	}
+
+Wikitable
+	= '{|' details:_WikitableUntilTerminator '|}' {
+		details = details.map( i => i[1] ).join('')
+		return new Model.Text( {
+			value: `{|${details}|}`
+		} )
+	}
+_WikitableUntilTerminator
+	= ( &_WikitableTerminatorAhead . )*
+_WikitableTerminatorAhead
+	= . (!'|}' .)* '|}'
