@@ -22,7 +22,8 @@ RawText
 	= symbols:Symbol+ { return symbols.join('') }
 UnusedToken
 	= value:( ( !Token ) . )+ {
-		return new Model.Text( { value: value.join('') } )
+		value = value.map( i => i[1] ).flat().join('')
+		return new Model.Text( { value: value } )
 	}
 _S
 	= ' '*
@@ -70,13 +71,13 @@ _MathTerminatorAhead
 	= . (!'</math>' .)* '</math>'
 
 Tag
-	= open:TagOpen content:Token* close:TagClose {
+	= open:TagOpen content:( Token / UnusedToken )* close:TagClose {
 		open.value = content
 		open.assert( close )
 		return open
 	}
 TagOpen
-	= '<' _S name:( [^ >]+ ) attributes:( TagAttribute* ) _S '>' {
+	= '<' _S name:( [^ >]+ ) attributes:( TagAttribute )* _S '>' {
 		name = name.join('')
 		return new Model.Tag( { attributes, name } )
 	}
