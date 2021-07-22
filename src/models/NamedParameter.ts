@@ -1,4 +1,4 @@
-import { NodeList } from '../utils'
+import { List, NodeList } from '../utils'
 import { TemplateParameter } from './_TemplateParameter'
 import { Text } from './Text'
 import { Token } from './_Token'
@@ -19,7 +19,8 @@ export class NamedParameter extends TemplateParameter {
 	get value(): NodeList { return this.#value }
 	set value( nodes: NodeList ) { this.#value.innerValue = nodes }
 
-	set innerValue( value: NodeList | string ) { this.#value.innerValue = value }
+	get innerValue(): List<Token> | string { return this.#value.innerValue }
+	set innerValue( value: List<Token> | string ) { this.#value.innerValue = value }
 
 	toString(): string {
 		return `|${this.#name}=${this.#value}`
