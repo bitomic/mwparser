@@ -9,6 +9,7 @@
     "lint:fix": "eslint src/ --fix --ext .js,.ts",
     "prepublish": "tsc --declaration",
     "test": "mocha dist/tests",
+	"update:minor": "npm version minor -m \"chore: set version to %s\"",
     "update:patch": "npm version patch -m \"chore: set version to %s\""
   },
   "keywords": [],
