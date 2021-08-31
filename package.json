@@ -3,11 +3,15 @@
   "version": "0.3.0",
   "description": "Parse and manipulate MediaWiki's wikicode.",
   "main": "dist/main.js",
+  "files": [
+	  "dist/**",
+	  "grammars/**"
+  ],
   "scripts": {
     "build": "tsc",
     "lint": "eslint src/ --ext .js,.ts",
     "lint:fix": "eslint src/ --fix --ext .js,.ts",
-    "prepublish": "tsc --declaration",
+    "prepublishOnly": "tsc --declaration",
     "test": "mocha dist/tests",
     "update:minor": "npm version minor -m \"chore: set version to %s\"",
     "update:patch": "npm version patch -m \"chore: set version to %s\""
