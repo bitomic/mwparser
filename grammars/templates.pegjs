@@ -5,11 +5,9 @@
 Start
 	= ( Token / UnusedToken )+
 Symbol
-	= [^|={}\[\]<>]
+	= [^|={}]
 Token
 	= Template
-	/ Gallery
-	/ Math
 	/ Text
 
 // Utilities
@@ -23,31 +21,6 @@ UnusedToken
 _S
 	= ' '*
 
-// Tokens
-Gallery
-	= '<gallery' details:_GalleryUntilTerminator '</gallery>' {
-		details = details.map( i => i[1] ).join('')
-		return new Model.Text( {
-			value: `<gallery${details}</gallery>`
-		} )
-	}
-_GalleryUntilTerminator
-	= ( &_GalleryTerminatorAhead [^<] )*
-_GalleryTerminatorAhead
-	= . (!'<' .)* '<'
-
-Math
-	= '<math' details:_MathUntilTerminator '</math>' {
-		details = details.map( i => i[1] ).join('')
-		return new Model.Text( {
-			value: `<math${details}</math>`
-		} )
-	}
-_MathUntilTerminator
-	= ( &_MathTerminatorAhead . )*
-_MathTerminatorAhead
-	= . (!'</math>' .)* '</math>'
-
 Template
 	= '{{' name:[^|}]+ args:TemplateParameter* '}}' {
 		name = name.join('')
@@ -60,14 +33,14 @@ TemplateParameter
 	= TemplateParameterNamed
 	/ TemplateParameterUnnamed
 TemplateParameterNamed
-	= '|' name:[^=]+ '=' value:Token+ {
+	= '|' name:[^=|]+ '=' value:Token* {
 		return new Model.NamedParameter( {
 			name: new Model.Text( { value: name.join('') } ),
 			value
 		} )
 	}
 TemplateParameterUnnamed
-	= '|' value:Token+ {
+	= '|' value:Token* {
 		return new Model.UnnamedParameter( {
 			value
 		} )
