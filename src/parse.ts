@@ -1,10 +1,9 @@
-import { NodeList } from './utils'
 import fs from 'fs'
 import path from 'path'
 import peg from 'pegjs'
-import * as Models from './models'
+import * as Models from './structures'
 
-type RuleSet = 'general' | 'templates'
+type RuleSet = 'default'
 type ParsersCollection = {
 	[ key in RuleSet ]?: peg.Parser
 }
@@ -13,7 +12,7 @@ const readGrammar = ( name: RuleSet ): string => fs.readFileSync( path.resolve( 
 
 const _parsers: ParsersCollection = {}
 
-export const getParser = ( name: RuleSet = 'general' ): peg.Parser => {
+export const getParser = ( name: RuleSet = 'default' ): peg.Parser => {
 	if ( !_parsers[ name ] ) {
 		const grammar = readGrammar( name )
 		_parsers[ name ] = peg.generate( grammar )
@@ -21,7 +20,7 @@ export const getParser = ( name: RuleSet = 'general' ): peg.Parser => {
 	return _parsers[ name ] || getParser()
 }
 
-export const parse = ( text: string, ruleset?: RuleSet ): NodeList<Models.Token> => {
+export const parse = ( text: string, ruleset?: RuleSet ): Models.NodeList => {
 	const parser = getParser( ruleset )
-	return new NodeList( parser.parse( text, Models ) )
+	return new Models.NodeList( ...parser.parse( text, Models ) )
 }
