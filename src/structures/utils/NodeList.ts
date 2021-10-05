@@ -1,11 +1,19 @@
 import { Template } from '../Template'
+import { Text } from '../Text'
 import { Token } from '../Token'
 
 export class NodeList<T extends Token = Token> {
-	public nodes: T[]
+	public nodes: T[] = []
 
 	constructor( ...nodes: T[] ) {
-		this.nodes = nodes
+		for ( const node of nodes ) {
+			const last = this.nodes[ this.nodes.length - 1 ]
+			if ( last && last instanceof Text && node instanceof Text ) {
+				last.rawValue += node.rawValue
+			} else {
+				this.nodes.push( node )
+			}
+		}
 	}
 
 	public findTemplate( name: string ): NodeList<Template> {

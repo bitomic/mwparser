@@ -12,7 +12,7 @@ Symbol
 UnusedToken
 	= value:( ( !Token ) . )+ {
 		value = value.map( i => i[1] ).flat().join('')
-		return new Model.Text( { value: value } )
+		return new Model.Text( value )
 	}
 
 Text
