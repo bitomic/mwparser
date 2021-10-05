@@ -34,5 +34,8 @@
     "mocha": "^9.0.2",
     "node-fetch": "^2.6.1",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "peggy": "^1.2.0"
   }
 }
