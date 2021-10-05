@@ -33,6 +33,6 @@ TemplateParameterNamed
 		return new Model.NamedParameter( name.join( '' ), value.join( '' ) )
 	}
 TemplateParameterUnnamed
-	= '|' value:[^|}]* {
+	= '|' value:( Template / [^|}] )* {
 		return new Model.UnnamedParameter( value.join( '' ) )
 	}
