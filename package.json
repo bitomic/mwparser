@@ -12,7 +12,6 @@
     "lint": "eslint src/ --ext .js,.ts",
     "lint:fix": "eslint src/ --fix --ext .js,.ts",
     "prepublishOnly": "tsc --declaration",
-    "test": "mocha dist/tests",
     "update:minor": "npm version minor -m \"chore: set version to %s\"",
     "update:patch": "npm version patch -m \"chore: set version to %s\""
   },
