@@ -6,6 +6,7 @@ Start
 	= ( Token / UnusedToken )+
 Token
 	= Template
+	/ Wikilink
 	/ Text
 Symbol
 	= [^[\]{}]
@@ -19,6 +20,10 @@ Text
 	= text:Symbol+ {
 		return new Model.Text( text.join( '' ) )
 	}
+
+Wikilink
+	= ( '[[' target:[^|\]]* '|' display:[^\]]* ']]' { return new Model.Wikilink( target.join( '' ), display.join( '' ) ) }
+		/ '[[' target:[^\]]* ']]' { return new Model.Wikilink( target.join( '' ) ) } )
 
 Template
 	= '{{' name:[^|}]+ args:TemplateParameter* '}}' {
