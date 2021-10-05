@@ -19,6 +19,38 @@ export class Template extends Token {
 		return this.rawName.value
 	}
 
+	private getNamedPositionals(): Set<number> {
+		const namedParameters = this.parameters
+			.filter( parameter => {
+				if ( !( parameter instanceof NamedParameter ) ) return false
+				const index = Number( parameter.name )
+				return !isNaN( index )
+			} ) as NamedParameter[]
+		const indexes = namedParameters.map( parameter => Number( parameter.name ) )
+
+		return new Set( indexes )
+	}
+
+	public getParameter( name: string | number ): Parameter | null {
+		const named = this.parameters.find( parameter => {
+			return parameter instanceof NamedParameter && parameter.name === `${ name }`
+		} )
+		if ( named ) return named as NamedParameter
+
+		const namedPositionals = this.getNamedPositionals()
+		const position = Number( name )
+		if ( isNaN( position ) ) return null
+		let counter = 1
+		for ( const parameter of this.parameters ) {
+			if ( !(parameter instanceof UnnamedParameter) ) continue
+			while ( namedPositionals.has( counter ) ) counter++
+			if ( counter > position ) break
+			if ( counter === position ) return parameter
+		}
+
+		return null
+	}
+
 	public toString(): string {
 		return `{{${ this.rawName }${ this.parameters.join( '' ) }}}`
 	}
