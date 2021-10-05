@@ -1,6 +1,7 @@
 import { Template } from '../Template'
 import { Text } from '../Text'
 import { Token } from '../Token'
+import { Wikilink } from '../Wikilink'
 
 export class NodeList<T extends Token = Token> {
 	public nodes: T[] = []
@@ -26,6 +27,14 @@ export class NodeList<T extends Token = Token> {
 			}
 		}
 
+		return new NodeList( ...nodes )
+	}
+
+	public get links(): NodeList<Wikilink> {
+		const nodes: Wikilink[] = []
+		for ( const node of this.nodes ) {
+			if ( node instanceof Wikilink ) nodes.push( node )
+		}
 		return new NodeList( ...nodes )
 	}
 
