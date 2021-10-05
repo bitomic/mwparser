@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import peg from 'pegjs'
+import peg from 'peggy'
 import * as Models from './structures'
 
 type RuleSet = 'default'
