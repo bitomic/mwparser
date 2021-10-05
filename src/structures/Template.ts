@@ -19,6 +19,10 @@ export class Template extends Token {
 		return this.rawName.value
 	}
 
+	public set name( name: string ) {
+		this.rawName.value = name
+	}
+
 	private getNamedPositionals(): Set<number> {
 		const namedParameters = this.parameters
 			.filter( parameter => {

@@ -14,9 +14,15 @@ export class NamedParameter extends Token {
 	public get name(): string {
 		return this.rawName.value
 	}
+	public set name( name: string ) {
+		this.rawName.value = name
+	}
 
 	public get value(): string {
 		return this.rawValue.value
+	}
+	public set value( value: string ) {
+		this.rawValue.value = value
 	}
 
 	toString(): string {
