@@ -1,3 +1,4 @@
+import { LanguageCodes } from './LanguageCodes'
 import { Template } from '../Template'
 import { Text } from '../Text'
 import { Token } from '../Token'
@@ -15,6 +16,16 @@ export class NodeList<T extends Token = Token> {
 				this.nodes.push( node )
 			}
 		}
+	}
+
+	public getInterwikis( ...langs: string[] ): NodeList<Wikilink> {
+		const codes = langs.length > 0 ? new Set( langs ) : LanguageCodes
+		const nodes = this.links.nodes.filter( node => {
+			if ( !node.target.value.search( ':' ) ) return false
+			const [ code ] = node.target.value.split( ':' )
+			return codes.has( code )
+		} )
+		return new NodeList( ...nodes )
 	}
 
 	public findTemplate( name: string ): NodeList<Template> {
