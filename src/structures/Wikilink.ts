@@ -2,13 +2,13 @@ import { Text } from './Text'
 import { Token } from './Token'
 
 export class Wikilink extends Token {
-	public display?: string
-	public target: string
+	public display?: Text
+	public target: Text
 
 	constructor( target: string, display?: string ) {
 		super()
-		this.target = target
-		this.display = display
+		this.target = new Text( target )
+		if ( display ) this.display = new Text( display )
 	}
 
 	public toString(): string {
