@@ -34,10 +34,10 @@ TemplateParameter
 	= TemplateParameterNamed
 	/ TemplateParameterUnnamed
 TemplateParameterNamed
-	= '|' name:[^=|]* '=' value:( Template / [^|}] )* {
+	= '|' name:[^=|]* '=' value:( Template / Wikilink / [^|}] )* {
 		return new Model.NamedParameter( name.join( '' ), value.join( '' ) )
 	}
 TemplateParameterUnnamed
-	= '|' value:( Template / [^|}] )* {
+	= '|' value:( Template / Wikilink / [^|}] )* {
 		return new Model.UnnamedParameter( value.join( '' ) )
 	}
