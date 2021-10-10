@@ -3,7 +3,7 @@ import { Text } from './Text'
 import { Token } from './Token'
 import { UnnamedParameter } from './UnnamedParameter'
 
-type Parameter = NamedParameter | UnnamedParameter
+export type Parameter = NamedParameter | UnnamedParameter
 
 export class Template extends Token {
 	public rawName: Text

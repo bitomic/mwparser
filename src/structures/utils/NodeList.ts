@@ -1,4 +1,5 @@
 import { LanguageCodes } from './LanguageCodes'
+import type { Parameter } from '../Template'
 import { Template } from '../Template'
 import { Text } from '../Text'
 import { Token } from '../Token'
@@ -28,6 +29,15 @@ export class NodeList<T extends Token = Token> {
 		return new NodeList( ...nodes )
 	}
 
+	public findParameter( name: string ): Parameter[] {
+		const parameters: Parameter[] = []
+		for ( const template of this.templates ) {
+			const parameter = template.getParameter( name )
+			if ( parameter ) parameters.push( parameter )
+		}
+		return parameters
+	}
+
 	public findTemplate( name: string ): NodeList<Template> {
 		const underscored = name.trim().replace( / /g, '_' )
 		const nodes: Template[] = []
@@ -49,12 +59,12 @@ export class NodeList<T extends Token = Token> {
 		return new NodeList( ...nodes )
 	}
 
-	public get templates(): NodeList<Template> {
+	public get templates(): Template[] {
 		const nodes: Template[] = []
 		for ( const node of this.nodes ) {
 			if ( node instanceof Template ) nodes.push( node )
 		}
-		return new NodeList( ...nodes )
+		return nodes
 	}
 
 	public toString(): string {
