@@ -55,6 +55,26 @@ export class Template extends Token {
 		return null
 	}
 
+	public prettify(): void {
+		this.rawName.rawValue = `${ this.name }\n`
+		let maxLength = 0
+		for ( const parameter of this.parameters ) {
+			if ( parameter instanceof NamedParameter && parameter.name.length > maxLength ) {
+				maxLength = parameter.name.length
+			}
+		}
+
+		for ( const parameter of this.parameters ) {
+			if ( parameter instanceof NamedParameter ) {
+				const spaces = ' '.repeat( maxLength - parameter.name.length + 1 )
+				parameter.rawName.rawValue = ` ${ parameter.name }${ spaces }`
+				parameter.rawValue.rawValue = ` ${ parameter.value }\n`
+			} else {
+				parameter.rawValue.rawValue = ` ${ parameter.value }\n`
+			}
+		}
+	}
+
 	public toString(): string {
 		return `{{${ this.rawName }${ this.parameters.join( '' ) }}}`
 	}
