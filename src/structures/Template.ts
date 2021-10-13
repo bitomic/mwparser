@@ -55,6 +55,18 @@ export class Template extends Token {
 		return null
 	}
 
+	public setParameter( name: string, value: string ): Parameter {
+		const parameter = this.getParameter( name )
+		if ( parameter ) {
+			parameter.value = value
+			return parameter
+		} else {
+			const param = new NamedParameter( name, value )
+			this.parameters.push( param )
+			return param
+		}
+	}
+
 	public prettify(): void {
 		this.rawName.rawValue = `${ this.name }\n`
 		let maxLength = 0
