@@ -26,7 +26,7 @@ export class Text extends Token {
 			this.rawValue.length - this.rawValue.trimLeft().length
 		)
 		const rightTrail = this.rawValue.substr(
-			this.rawValue.length - this.rawValue.trimRight().length,
+			this.rawValue.trimRight().length,
 			this.rawValue.length
 		)
 		this.rawValue = `${ leftTrail }${ value }${ rightTrail }`
