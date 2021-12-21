@@ -25,7 +25,7 @@
   "homepage": "https://github.com/bitomic/mwparser#readme",
   "devDependencies": {
     "@types/mocha": "9.0.0",
-    "@types/node": "16.11.11",
+    "@types/node": "17.0.2",
     "@types/node-fetch": "2.5.12",
     "@typescript-eslint/eslint-plugin": "5.5.0",
     "@typescript-eslint/parser": "5.5.0",
