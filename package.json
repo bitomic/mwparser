@@ -35,6 +35,6 @@
     "typescript": "4.7.3"
   },
   "dependencies": {
-    "peggy": "^1.2.0"
+    "peggy": "^2.0.1"
   }
 }
