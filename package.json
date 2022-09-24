@@ -36,5 +36,6 @@
   },
   "dependencies": {
     "peggy": "^2.0.1"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }
