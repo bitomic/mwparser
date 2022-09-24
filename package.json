@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/bitomic/mwparser#readme",
   "devDependencies": {
+    "@bitomic/eslint-config": "^1.2.0",
     "@types/mocha": "9.1.1",
     "@types/node": "18.7.20",
     "@types/node-fetch": "2.6.2",

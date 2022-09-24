@@ -8,7 +8,7 @@ type ParsersCollection = {
 	[ key in RuleSet ]?: peg.Parser
 }
 
-const readGrammar = ( name: RuleSet ): string => fs.readFileSync( path.resolve( __dirname, `../grammars/${name}.pegjs` ) ).toString()
+const readGrammar = ( name: RuleSet ): string => fs.readFileSync( path.resolve( __dirname, `../grammars/${ name }.pegjs` ) ).toString()
 
 const _parsers: ParsersCollection = {}
 
@@ -22,5 +22,6 @@ export const getParser = ( name: RuleSet = 'default' ): peg.Parser => {
 
 export const parse = ( text: string, ruleset?: RuleSet ): Models.NodeList => {
 	const parser = getParser( ruleset )
-	return new Models.NodeList( ...parser.parse( text, Models ) )
+	const nodes = parser.parse( text, Models ) as Models.Token[]
+	return new Models.NodeList( ...nodes )
 }

@@ -5,7 +5,7 @@ export class NamedParameter extends Token {
 	public rawName: Text
 	public rawValue: Text
 
-	constructor( name: string, value: string ) {
+	public constructor( name: string, value: string ) {
 		super()
 		this.rawName = new Text( name )
 		this.rawValue = new Text( value )
@@ -25,7 +25,7 @@ export class NamedParameter extends Token {
 		this.rawValue.value = value
 	}
 
-	toString(): string {
+	public toString(): string {
 		return `|${ this.rawName }=${ this.rawValue }`
 	}
 }

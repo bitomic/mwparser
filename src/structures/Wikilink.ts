@@ -5,7 +5,7 @@ export class Wikilink extends Token {
 	public display?: Text
 	public target: Text
 
-	constructor( target: string, display?: string ) {
+	public constructor( target: string, display?: string ) {
 		super()
 		this.target = new Text( target )
 		if ( display ) this.display = new Text( display )

@@ -1,17 +1,16 @@
+import { type Parameter, Template } from '../Template'
 import { LanguageCodes } from './LanguageCodes'
-import type { Parameter } from '../Template'
-import { Template } from '../Template'
 import { Text } from '../Text'
-import { Token } from '../Token'
+import type { Token } from '../Token'
 import { Wikilink } from '../Wikilink'
 
 export class NodeList<T extends Token = Token> {
 	public nodes: T[] = []
 
-	constructor( ...nodes: T[] ) {
+	public constructor( ...nodes: T[] ) {
 		for ( const node of nodes ) {
 			const last = this.nodes[ this.nodes.length - 1 ]
-			if ( last && last instanceof Text && node instanceof Text ) {
+			if ( last instanceof Text && node instanceof Text ) {
 				last.rawValue += node.rawValue
 			} else {
 				this.nodes.push( node )
@@ -24,7 +23,7 @@ export class NodeList<T extends Token = Token> {
 		const nodes = this.links.nodes.filter( node => {
 			if ( !node.target.value.search( ':' ) ) return false
 			const [ code ] = node.target.value.split( ':' )
-			return codes.has( code )
+			return codes.has( code ?? '' )
 		} )
 		return new NodeList( ...nodes )
 	}

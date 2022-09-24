@@ -4,7 +4,7 @@ import { Token } from './Token'
 export class UnnamedParameter extends Token {
 	public rawValue: Text
 
-	constructor( value: string ) {
+	public constructor( value: string ) {
 		super()
 		this.rawValue = new Text( value )
 	}

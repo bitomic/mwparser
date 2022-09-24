@@ -36,9 +36,7 @@ export class Template extends Token {
 	}
 
 	public getParameter( name: string | number ): Parameter | null {
-		const named = this.parameters.find( parameter => {
-			return parameter instanceof NamedParameter && parameter.name === `${ name }`
-		} )
+		const named = this.parameters.find( parameter => parameter instanceof NamedParameter && parameter.name === `${ name }` )
 		if ( named ) return named as NamedParameter
 
 		const namedPositionals = this.getNamedPositionals()
@@ -46,7 +44,7 @@ export class Template extends Token {
 		if ( isNaN( position ) ) return null
 		let counter = 1
 		for ( const parameter of this.parameters ) {
-			if ( !(parameter instanceof UnnamedParameter) ) continue
+			if ( !( parameter instanceof UnnamedParameter ) ) continue
 			while ( namedPositionals.has( counter ) ) counter++
 			if ( counter > position ) break
 			if ( counter === position ) return parameter

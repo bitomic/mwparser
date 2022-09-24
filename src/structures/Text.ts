@@ -1,11 +1,11 @@
 import { parse } from '../main'
-import { NodeList } from './utils'
+import type { NodeList } from './utils'
 import { Token } from './Token'
 
 export class Text extends Token {
 	public rawValue: string
 
-	constructor( value: string ) {
+	public constructor( value: string ) {
 		super()
 		this.rawValue = value
 	}

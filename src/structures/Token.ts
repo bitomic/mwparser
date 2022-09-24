@@ -1,3 +1,3 @@
 export abstract class Token {
-	abstract toString(): string
+	public abstract toString(): string
 }

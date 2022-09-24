@@ -1,13 +1,37 @@
 {
-  "exclude": [ "dist", "node_modules" ],
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
-  }
+	"exclude": [ "dist", "node_modules" ],
+	"include": [ "src" ],
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "ES6",
+    "lib": [ "ES2022" ],
+		"skipLibCheck": true,
+		"strict": true,
+
+		/* Paths */
+		"outDir": "./dist",
+		"rootDir": "./src",
+
+		/* The "No" Corner */
+		"noImplicitAny": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+
+		/* Strict */
+		"strictBindCallApply": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": true,
+		"useUnknownInCatchVariables": true,
+
+		/* Other settings */
+		"esModuleInterop": true,
+		"exactOptionalPropertyTypes": true,
+		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true
+	}
 }
