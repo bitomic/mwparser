@@ -33,7 +33,7 @@
     "eslint": "8.37.0",
     "mocha": "10.2.0",
     "node-fetch": "2.6.9",
-    "typescript": "5.0.3"
+    "typescript": "5.0.4"
   },
   "dependencies": {
     "peggy": "^2.0.1"
