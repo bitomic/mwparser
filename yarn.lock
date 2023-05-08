@@ -1675,7 +1675,7 @@ __metadata:
     "@typescript-eslint/parser": 5.59.2
     eslint: 8.40.0
     mocha: 10.2.0
-    node-fetch: 2.6.9
+    node-fetch: 2.6.10
     peggy: ^2.0.1
     typescript: 5.0.4
   languageName: unknown
@@ -1711,9 +1711,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:2.6.9":
-  version: 2.6.9
-  resolution: "node-fetch@npm:2.6.9"
+"node-fetch@npm:2.6.10":
+  version: 2.6.10
+  resolution: "node-fetch@npm:2.6.10"
   dependencies:
     whatwg-url: ^5.0.0
   peerDependencies:
@@ -1721,7 +1721,7 @@ __metadata:
   peerDependenciesMeta:
     encoding:
       optional: true
-  checksum: acb04f9ce7224965b2b59e71b33c639794d8991efd73855b0b250921382b38331ffc9d61bce502571f6cc6e11a8905ca9b1b6d4aeb586ab093e2756a1fd190d0
+  checksum: 9250e5266ccb4cc43e0ba5a4e23447d65f207a445d8f968420ef5f135cb9db3f03e527647a3762c1ba06872cbd13640e572d9eea63ba6754e936a6e824ed85a3
   languageName: node
   linkType: hard
 
