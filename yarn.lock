@@ -158,6 +158,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@peggyjs/from-mem@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@peggyjs/from-mem@npm:1.3.0"
+  dependencies:
+    semver: 7.6.0
+  checksum: e7caf479f8c2b2a3125d9d9a44242077b2062e9fd0ce383af32d7ee92801d1c4e8d23b21a76307d788f8ef0e748b2809575329c599807c3a6d7e10a7f7822d5f
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -638,10 +647,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^9.3.0":
-  version: 9.4.0
-  resolution: "commander@npm:9.4.0"
-  checksum: a322de584a6ccd1ea83c24f6a660e52d16ffbe2613fcfbb8d2cc68bc9dec637492456d754fe8bb5b039ad843ed8e04fb0b107e581a75f62cde9e1a0ab1546e09
+"commander@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "commander@npm:12.1.0"
+  checksum: 68e9818b00fc1ed9cdab9eb16905551c2b768a317ae69a5e3c43924c2b20ac9bb65b27e1cab36aeda7b6496376d4da908996ba2c0b5d79463e0fb1e77935d514
   languageName: node
   linkType: hard
 
@@ -1699,7 +1708,7 @@ __metadata:
     eslint: 8.57.0
     mocha: 10.4.0
     node-fetch: 2.7.0
-    peggy: ^2.0.1
+    peggy: ^4.0.3
     typescript: 5.4.5
   languageName: unknown
   linkType: soft
@@ -1869,15 +1878,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"peggy@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "peggy@npm:2.0.1"
+"peggy@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "peggy@npm:4.0.3"
   dependencies:
-    commander: ^9.3.0
+    "@peggyjs/from-mem": 1.3.0
+    commander: ^12.1.0
     source-map-generator: 0.8.0
   bin:
     peggy: bin/peggy.js
-  checksum: 0ce0ee8f9f872bc96183bfcb7ce9ccabcad6d1df1e4ff9b1b7ebaf57f3996dcb1016b7610013f6a8a1bd8b135a8b3b15ccff914bdd88ab2264bdcbca5b36f2f1
+  checksum: 11918566de96af0d2663f791ce013eaf8ae36b4069eb1fe6161223627274b7b3b355873c9c20f90c3514a778f1382e9426772a869e51771c52e7d626de3bcff6
   languageName: node
   linkType: hard
 
@@ -2017,6 +2027,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"semver@npm:7.6.0, semver@npm:^7.6.0":
+  version: 7.6.0
+  resolution: "semver@npm:7.6.0"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: 7427f05b70786c696640edc29fdd4bc33b2acf3bbe1740b955029044f80575fc664e1a512e4113c3af21e767154a94b4aa214bf6cd6e42a1f6dba5914e0b208c
+  languageName: node
+  linkType: hard
+
 "semver@npm:^7.3.5":
   version: 7.3.7
   resolution: "semver@npm:7.3.7"
@@ -2025,17 +2046,6 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 2fa3e877568cd6ce769c75c211beaed1f9fce80b28338cadd9d0b6c40f2e2862bafd62c19a6cff42f3d54292b7c623277bcab8816a2b5521cf15210d43e75232
-  languageName: node
-  linkType: hard
-
-"semver@npm:^7.6.0":
-  version: 7.6.0
-  resolution: "semver@npm:7.6.0"
-  dependencies:
-    lru-cache: ^6.0.0
-  bin:
-    semver: bin/semver.js
-  checksum: 7427f05b70786c696640edc29fdd4bc33b2acf3bbe1740b955029044f80575fc664e1a512e4113c3af21e767154a94b4aa214bf6cd6e42a1f6dba5914e0b208c
   languageName: node
   linkType: hard
 
