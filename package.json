@@ -38,5 +38,5 @@
   "dependencies": {
     "peggy": "^2.0.1"
   },
-  "packageManager": "yarn@3.8.2"
+  "packageManager": "yarn@3.8.3"
 }
