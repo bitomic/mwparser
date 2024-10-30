@@ -31,7 +31,7 @@
     "@typescript-eslint/eslint-plugin": "8.12.2",
     "@typescript-eslint/parser": "8.12.2",
     "eslint": "8.57.1",
-    "mocha": "10.8.1",
+    "mocha": "10.8.2",
     "node-fetch": "2.7.0",
     "typescript": "5.4.5"
   },
