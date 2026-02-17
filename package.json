@@ -36,7 +36,7 @@
     "typescript": "5.4.5"
   },
   "dependencies": {
-    "peggy": "^2.0.1"
+    "peggy": "^5.0.6"
   },
   "packageManager": "yarn@3.8.7"
 }
