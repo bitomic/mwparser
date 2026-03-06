@@ -176,12 +176,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:24.11.0":
-  version: 24.11.0
-  resolution: "@types/node@npm:24.11.0"
+"@types/node@npm:24.11.2":
+  version: 24.11.2
+  resolution: "@types/node@npm:24.11.2"
   dependencies:
     undici-types: ~7.16.0
-  checksum: 21bc65998faab117bead0bf372bd2fcacd12a5b25cdb88a947154b0b0b212aa4bc78a116467a963f9aafad68032421ebd4b6063396ba858c49cbcfebbc3e83a7
+  checksum: 764a8ba918d78ee5e16ea0b15addee2b50f9b131535a0314c61bcc2521567530de56773a607cb3df0cbbc48e0c9cafaa71d12a2826e2060ac7859f9671dc4efc
   languageName: node
   linkType: hard
 
@@ -1419,7 +1419,7 @@ __metadata:
   dependencies:
     "@bitomic/eslint-config": ^1.3.0
     "@types/mocha": 10.0.10
-    "@types/node": 24.11.0
+    "@types/node": 24.11.2
     "@types/node-fetch": 2.6.13
     "@typescript-eslint/eslint-plugin": 8.56.1
     "@typescript-eslint/parser": 8.56.1
