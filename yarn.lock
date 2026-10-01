@@ -1196,9 +1196,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mocha@npm:12.0.2":
-  version: 12.0.2
-  resolution: "mocha@npm:12.0.2"
+"mocha@npm:12.0.3":
+  version: 12.0.3
+  resolution: "mocha@npm:12.0.3"
   dependencies:
     browser-stdout: ^1.3.1
     chokidar: ^5.0.0
@@ -1218,7 +1218,7 @@ __metadata:
     workerpool: ^10.0.0
   bin:
     mocha: bin/mocha.js
-  checksum: c714f1eb0826ac0b7374e5489c68928d2a87ae62e996b56f3aa4cbf4c03bd7ab1f3b01b4460884ef711f92011fd2b6c2351cd704e6b9ab64bebe7c43acb78128
+  checksum: bcfa0dab550edc3378aba5c89bc974d032daa1a2a70cc29c67f47431e07beb328ba829cc1f3d3e199cca6aff6cec6f7883305bf911de73b7d087497c0ccab12d
   languageName: node
   linkType: hard
 
@@ -1247,7 +1247,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 8.58.2
     "@typescript-eslint/parser": 8.58.2
     eslint: 8.57.1
-    mocha: 12.0.2
+    mocha: 12.0.3
     node-fetch: 2.7.0
     peggy: ^2.0.1
     typescript: 5.4.5
